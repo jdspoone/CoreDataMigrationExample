@@ -190,7 +190,7 @@ class ListViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     func addNote(_ sender: AnyObject?)
       {
         // Create a new note
-        let note = Note(title: "", body: "", context: managedObjectContext)
+        let note = Note(title: "", body: "", imageData: nil, context: managedObjectContext)
 
         // Create and show a note view controller for the new note
         let noteViewController = NoteViewController(note: note, editing: true, context: managedObjectContext)

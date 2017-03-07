@@ -15,12 +15,13 @@
 		1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903901E6E555E00193ECD /* NoteViewController.swift */; };
 		1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903921E6E55CF00193ECD /* ListViewController.swift */; };
 		1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903941E6E597F00193ECD /* CoreDataController.swift */; };
+		1FB1072C1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F49036E1E6E4EA500193ECD /* CoreDataMigration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataMigration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4903711E6E4EA500193ECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataMigration-v1.0.xcdatamodel; sourceTree = "<group>"; };
+		1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataMigration-v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		1F49037B1E6E4EA500193ECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F49037E1E6E4EA500193ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F4903801E6E4EA500193ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -28,6 +29,8 @@
 		1F4903901E6E555E00193ECD /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		1F4903921E6E55CF00193ECD /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1F4903941E6E597F00193ECD /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "v1.0-to-v1.1.xcmappingmodel"; sourceTree = "<group>"; };
+		1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataMigration-v1.1.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 				1F4903941E6E597F00193ECD /* CoreDataController.swift */,
 				1F49038C1E6E50AA00193ECD /* Note.swift */,
 				1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */,
+				1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -165,6 +169,7 @@
 				1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */,
 				1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */,
 				1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */,
+				1FB1072C1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */,
 				1F49038E1E6E50AA00193ECD /* Note.swift in Sources */,
 				1F49037A1E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld in Sources */,
 				1F4903721E6E4EA500193ECD /* AppDelegate.swift in Sources */,
@@ -331,9 +336,10 @@
 		1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */,
 				1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */,
 			);
-			currentVersion = 1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */;
+			currentVersion = 1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */;
 			path = CoreDataMigration.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

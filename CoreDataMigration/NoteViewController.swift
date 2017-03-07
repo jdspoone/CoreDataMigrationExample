@@ -8,7 +8,7 @@ import UIKit
 import CoreData
 
 
-class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate
+class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
   {
 
     var managedObjectContext: NSManagedObjectContext
@@ -30,6 +30,8 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
 
     var titleTextField: UITextField!
     var bodyTextView: UITextView!
+    var imageView: UIImageView!
+    var noImageLabel: UILabel!
 
     var doneButton: UIBarButtonItem!
 
@@ -91,6 +93,26 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         bodyTextView.delegate = self
         view.addSubview(bodyTextView)
 
+        // Configure the image view
+        imageView = UIImageView(frame: .zero)
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 5.0
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.clipsToBounds = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.selectImage(_:))))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+
+        // Configure the no image label
+        noImageLabel = UILabel(frame: .zero)
+        noImageLabel.text = "No photo selected"
+        noImageLabel.textAlignment = .center
+        noImageLabel.font = UIFont(name: "Helvetica", size: 24)
+        noImageLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(noImageLabel)
+
         // Configure the layout bindings for the title text field
         titleTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0).isActive = true
         titleTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0).isActive = true
@@ -102,6 +124,18 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         bodyTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0).isActive = true
         bodyTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8.0).isActive = true
         bodyTextView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+
+        // Configure the layout bindings for the image view
+        imageView.widthAnchor.constraint(equalToConstant: 320.0).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 320.0).isActive = true
+        imageView.topAnchor.constraint(equalTo: bodyTextView.bottomAnchor, constant: 8.0).isActive = true
+
+        // Configure the layout bindings for the no image label
+        noImageLabel.widthAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+        noImageLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        noImageLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+        noImageLabel.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
 
         // Create the done button
         doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.done(_:)))
@@ -115,6 +149,25 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         // Initialize the text field and text view's text
         titleTextField.text = note.title
         bodyTextView.text = note.body
+
+        // Initialize the image view's image
+        imageView.image = note.image ?? UIImage(named: "defaultImage")
+        noImageLabel.isHidden = note.image != nil
+      }
+
+
+    override func viewWillDisappear(_ animated: Bool)
+      {
+        super.viewWillDisappear(animated)
+
+        // If we're moving from the parent view controller
+        if isMovingFromParentViewController {
+
+          // Attempt to save the managed object context
+          do { try managedObjectContext.save() }
+          catch let e { fatalError("failed to save: \(e)") }
+        }
+
       }
 
 
@@ -178,6 +231,34 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
       }
 
 
+    // MARK: - UIImagePickerControllerDelegate
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+      {
+        // Get the original version of the selected image
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+
+        // Update the note's image
+        note.image = selectedImage
+
+        // Update the image view's image
+        imageView.image = selectedImage
+
+        // Hide the no image label
+        noImageLabel.isHidden = true
+
+        // Dismiss the picker
+        dismiss(animated: true, completion: nil)
+      }
+
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+      {
+        // Dismiss the picker
+        dismiss(animated: true, completion: nil)
+      }
+
+
     // MARK: - Actions
 
     func done(_ sender: AnyObject?)
@@ -208,6 +289,50 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         // Attempt to save the managed object context
         do { try managedObjectContext.save() }
         catch let e { fatalError("failed to save: \(e)") }
+      }
+
+
+    func selectImage(_ sender: AnyObject?)
+      {
+        // Ensure the active subview resigns as first responder
+        activeSubview?.resignFirstResponder()
+
+        // Configure a number of alert actions
+        var actions = [UIAlertAction]()
+
+        // Always configure a cancel action
+        actions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // Configure a camera button if a camera is available
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+          actions.append(UIAlertAction(title: "Camera", style: .default, handler:
+              { (action: UIAlertAction) in
+                // Present a UIImagePickerController for the photo library
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .camera
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+              }))
+        }
+
+        // Configure a photo library button if a photo library is available
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+          actions.append(UIAlertAction(title: "Photo Library", style: .default, handler:
+            { (action: UIAlertAction) in
+              // Present a UIImagePickerController for the camera
+              let imagePickerController = UIImagePickerController()
+              imagePickerController.sourceType = .photoLibrary
+              imagePickerController.delegate = self
+              self.present(imagePickerController, animated: true, completion: nil)
+            }))
+        }
+
+        // Configure and present an alert controller
+        let alertController = UIAlertController(title: "Image Selection", message: "Choose the image source you'd like to use", preferredStyle: .alert)
+        for action in actions {
+          alertController.addAction(action)
+        }
+        present(alertController, animated: true, completion: nil)
       }
 
   }

@@ -68,7 +68,30 @@ class CoreDataController: NSObject
 
               // If a migration is needed
               if compatible == false {
-                fatalError("unimplemented")
+
+                // Get the source model
+                let sourceModel = NSManagedObjectModel.mergedModel(from: [Bundle.main], forStoreMetadata: sourceMetadata)!
+
+                // Get the destination model
+                let destinationModel = managedObjectModel
+
+                // Get the custom mapping model between the source and destination models
+                let mappingModel = try NSMappingModel.inferredMappingModel(forSourceModel: sourceModel, destinationModel: destinationModel)
+
+                // Create a migration manager
+                let migrationManager = NSMigrationManager(sourceModel: sourceModel, destinationModel: destinationModel)
+
+                // Ensure there is no file at the temporary data store url
+                if FileManager.default.fileExists(atPath: temporaryDataStoreURL.path) {
+                  try FileManager.default.removeItem(at: temporaryDataStoreURL)
+                }
+
+                // Migrate the datastore
+                try migrationManager.migrateStore(from: dataStoreURL, sourceType: NSSQLiteStoreType, options: nil, with: mappingModel, toDestinationURL: temporaryDataStoreURL, destinationType: NSSQLiteStoreType, destinationOptions: nil)
+
+                // Move the migrated datastore to from the temporary location to the primary location
+                try FileManager.default.removeItem(at: dataStoreURL)
+                try FileManager.default.moveItem(at: temporaryDataStoreURL, to: dataStoreURL)
               }
             }
 

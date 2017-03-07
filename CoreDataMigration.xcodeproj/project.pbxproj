@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		1F4903721E6E4EA500193ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903711E6E4EA500193ECD /* AppDelegate.swift */; };
-		1F4903741E6E4EA500193ECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903731E6E4EA500193ECD /* ViewController.swift */; };
-		1F4903771E6E4EA500193ECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4903751E6E4EA500193ECD /* Main.storyboard */; };
 		1F49037A1E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */; };
 		1F49037C1E6E4EA500193ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F49037B1E6E4EA500193ECD /* Assets.xcassets */; };
 		1F49037F1E6E4EA500193ECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F49037D1E6E4EA500193ECD /* LaunchScreen.storyboard */; };
+		1F49038E1E6E50AA00193ECD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49038C1E6E50AA00193ECD /* Note.swift */; };
+		1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903901E6E555E00193ECD /* NoteViewController.swift */; };
+		1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903921E6E55CF00193ECD /* ListViewController.swift */; };
+		1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903941E6E597F00193ECD /* CoreDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F49036E1E6E4EA500193ECD /* CoreDataMigration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataMigration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4903711E6E4EA500193ECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F4903731E6E4EA500193ECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1F4903761E6E4EA500193ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1F4903791E6E4EA500193ECD /* CoreDataMigration.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataMigration.xcdatamodel; sourceTree = "<group>"; };
+		1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataMigration-v1.0.xcdatamodel; sourceTree = "<group>"; };
 		1F49037B1E6E4EA500193ECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F49037E1E6E4EA500193ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F4903801E6E4EA500193ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F49038C1E6E50AA00193ECD /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		1F4903901E6E555E00193ECD /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		1F4903921E6E55CF00193ECD /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		1F4903941E6E597F00193ECD /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +44,7 @@
 		1F4903651E6E4EA400193ECD = {
 			isa = PBXGroup;
 			children = (
-				1F4903701E6E4EA500193ECD /* CoreDataMigration */,
+				1F4903701E6E4EA500193ECD /* Sources */,
 				1F49036F1E6E4EA500193ECD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,18 +57,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F4903701E6E4EA500193ECD /* CoreDataMigration */ = {
+		1F4903701E6E4EA500193ECD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1F4903861E6E4ECA00193ECD /* CoreData */,
+				1F4903871E6E4EF600193ECD /* Resources */,
 				1F4903711E6E4EA500193ECD /* AppDelegate.swift */,
-				1F4903731E6E4EA500193ECD /* ViewController.swift */,
-				1F4903751E6E4EA500193ECD /* Main.storyboard */,
-				1F49037B1E6E4EA500193ECD /* Assets.xcassets */,
+				1F4903921E6E55CF00193ECD /* ListViewController.swift */,
+				1F4903901E6E555E00193ECD /* NoteViewController.swift */,
 				1F49037D1E6E4EA500193ECD /* LaunchScreen.storyboard */,
 				1F4903801E6E4EA500193ECD /* Info.plist */,
+			);
+			name = Sources;
+			path = CoreDataMigration;
+			sourceTree = "<group>";
+		};
+		1F4903861E6E4ECA00193ECD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1F4903941E6E597F00193ECD /* CoreDataController.swift */,
+				1F49038C1E6E50AA00193ECD /* Note.swift */,
 				1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */,
 			);
-			path = CoreDataMigration;
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		1F4903871E6E4EF600193ECD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1F49037B1E6E4EA500193ECD /* Assets.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +152,6 @@
 			files = (
 				1F49037F1E6E4EA500193ECD /* LaunchScreen.storyboard in Resources */,
 				1F49037C1E6E4EA500193ECD /* Assets.xcassets in Resources */,
-				1F4903771E6E4EA500193ECD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F4903741E6E4EA500193ECD /* ViewController.swift in Sources */,
+				1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */,
+				1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */,
+				1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */,
+				1F49038E1E6E50AA00193ECD /* Note.swift in Sources */,
 				1F49037A1E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld in Sources */,
 				1F4903721E6E4EA500193ECD /* AppDelegate.swift in Sources */,
 			);
@@ -149,14 +174,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1F4903751E6E4EA500193ECD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F4903761E6E4EA500193ECD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1F49037D1E6E4EA500193ECD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -306,6 +323,7 @@
 				1F4903851E6E4EA500193ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -313,9 +331,9 @@
 		1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1F4903791E6E4EA500193ECD /* CoreDataMigration.xcdatamodel */,
+				1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */,
 			);
-			currentVersion = 1F4903791E6E4EA500193ECD /* CoreDataMigration.xcdatamodel */;
+			currentVersion = 1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */;
 			path = CoreDataMigration.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

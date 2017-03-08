@@ -151,7 +151,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         bodyTextView.text = note.body
 
         // Initialize the image view's image
-        imageView.image = note.image ?? UIImage(named: "defaultImage")
+        imageView.image = note.image?.image ?? UIImage(named: "defaultImage")
         noImageLabel.isHidden = note.image != nil
       }
 
@@ -238,8 +238,15 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         // Get the original version of the selected image
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
-        // Update the note's image
-        note.image = selectedImage
+        // If there is an existing image associated with the note, delete it from the managed object context
+        if let currentImage = note.image {
+          managedObjectContext.delete(currentImage)
+        }
+
+        // Create a new image object from the selected image, and associate it with the note
+        let newImage = Image(imageData: nil, context: managedObjectContext)
+        newImage.image = selectedImage
+        note.image = newImage
 
         // Update the image view's image
         imageView.image = selectedImage

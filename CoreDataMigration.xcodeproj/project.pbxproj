@@ -15,7 +15,10 @@
 		1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903901E6E555E00193ECD /* NoteViewController.swift */; };
 		1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903921E6E55CF00193ECD /* ListViewController.swift */; };
 		1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4903941E6E597F00193ECD /* CoreDataController.swift */; };
-		1FB1072C1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */; };
+		1FB1072E1E6FA0AE00E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1072D1E6FA0AE00E2EA8E /* v1.0-to-v1.1.xcmappingmodel */; };
+		1FD55D251E6F59DA0001DB5A /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD55D241E6F59DA0001DB5A /* Image.swift */; };
+		1FD55D271E6F5CA70001DB5A /* v1.1-to-v1.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1FD55D261E6F5CA70001DB5A /* v1.1-to-v1.2.xcmappingmodel */; };
+		1FD55D2B1E6F5CE50001DB5A /* NoteToNotePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD55D2A1E6F5CE50001DB5A /* NoteToNotePolicy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +32,12 @@
 		1F4903901E6E555E00193ECD /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		1F4903921E6E55CF00193ECD /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1F4903941E6E597F00193ECD /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
-		1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "v1.0-to-v1.1.xcmappingmodel"; sourceTree = "<group>"; };
+		1FB1072D1E6FA0AE00E2EA8E /* v1.0-to-v1.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "v1.0-to-v1.1.xcmappingmodel"; sourceTree = "<group>"; };
 		1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataMigration-v1.1.xcdatamodel"; sourceTree = "<group>"; };
+		1FD55D231E6F575F0001DB5A /* CoreDataMigration-v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataMigration-v1.2.xcdatamodel"; sourceTree = "<group>"; };
+		1FD55D241E6F59DA0001DB5A /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		1FD55D261E6F5CA70001DB5A /* v1.1-to-v1.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "v1.1-to-v1.2.xcmappingmodel"; sourceTree = "<group>"; };
+		1FD55D2A1E6F5CE50001DB5A /* NoteToNotePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteToNotePolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				1F4903941E6E597F00193ECD /* CoreDataController.swift */,
-				1F49038C1E6E50AA00193ECD /* Note.swift */,
-				1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */,
-				1FB1072B1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel */,
+				1FD55D291E6F5CB40001DB5A /* Model */,
+				1FD55D281E6F5CAB0001DB5A /* Migration */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -92,6 +98,26 @@
 				1F49037B1E6E4EA500193ECD /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		1FD55D281E6F5CAB0001DB5A /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				1FD55D2A1E6F5CE50001DB5A /* NoteToNotePolicy.swift */,
+				1FD55D261E6F5CA70001DB5A /* v1.1-to-v1.2.xcmappingmodel */,
+				1FB1072D1E6FA0AE00E2EA8E /* v1.0-to-v1.1.xcmappingmodel */,
+			);
+			name = Migration;
+			sourceTree = "<group>";
+		};
+		1FD55D291E6F5CB40001DB5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FD55D241E6F59DA0001DB5A /* Image.swift */,
+				1F49038C1E6E50AA00193ECD /* Note.swift */,
+				1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,13 +192,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD55D251E6F59DA0001DB5A /* Image.swift in Sources */,
 				1F4903931E6E55CF00193ECD /* ListViewController.swift in Sources */,
+				1FD55D2B1E6F5CE50001DB5A /* NoteToNotePolicy.swift in Sources */,
 				1F4903911E6E555E00193ECD /* NoteViewController.swift in Sources */,
+				1FD55D271E6F5CA70001DB5A /* v1.1-to-v1.2.xcmappingmodel in Sources */,
 				1F4903951E6E597F00193ECD /* CoreDataController.swift in Sources */,
-				1FB1072C1E6F9F8900E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */,
 				1F49038E1E6E50AA00193ECD /* Note.swift in Sources */,
 				1F49037A1E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld in Sources */,
 				1F4903721E6E4EA500193ECD /* AppDelegate.swift in Sources */,
+				1FB1072E1E6FA0AE00E2EA8E /* v1.0-to-v1.1.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,10 +365,11 @@
 		1F4903781E6E4EA500193ECD /* CoreDataMigration.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1FD55D231E6F575F0001DB5A /* CoreDataMigration-v1.2.xcdatamodel */,
 				1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */,
 				1F4903791E6E4EA500193ECD /* CoreDataMigration-v1.0.xcdatamodel */,
 			);
-			currentVersion = 1FD55D221E6F4D9E0001DB5A /* CoreDataMigration-v1.1.xcdatamodel */;
+			currentVersion = 1FD55D231E6F575F0001DB5A /* CoreDataMigration-v1.2.xcdatamodel */;
 			path = CoreDataMigration.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

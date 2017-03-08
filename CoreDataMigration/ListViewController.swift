@@ -2,6 +2,8 @@
 
   Written by Jeff Spooner
 
+  This class is responsible for displaying all of the Notes in the managed object context.
+
 */
 
 import UIKit
@@ -190,7 +192,7 @@ class ListViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     func addNote(_ sender: AnyObject?)
       {
         // Create a new note
-        let note = Note(title: "", body: "", image: nil, context: managedObjectContext)
+        let note = Note(title: "", body: "", images: Set<Image>(), context: managedObjectContext)
 
         // Create and show a note view controller for the new note
         let noteViewController = NoteViewController(note: note, editing: true, context: managedObjectContext)

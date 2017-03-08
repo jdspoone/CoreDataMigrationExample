@@ -2,6 +2,9 @@
 
   Written by Jeff Spooner
 
+  This class is responsible for configuring the managed object context,
+  the most important feature of which is CoreData migration.  
+
 */
 
 import CoreData

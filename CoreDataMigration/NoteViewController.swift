@@ -2,13 +2,15 @@
 
   Written by Jeff Spooner
 
+  This class is responsible for viewing and editing the various properties of a given Note.
+
 */
 
 import UIKit
 import CoreData
 
 
-class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate
   {
 
     var managedObjectContext: NSManagedObjectContext
@@ -151,8 +153,8 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         bodyTextView.text = note.body
 
         // Initialize the image view's image
-        imageView.image = note.image?.image ?? UIImage(named: "defaultImage")
-        noImageLabel.isHidden = note.image != nil
+        imageView.image = note.images.first?.image ?? UIImage(named: "defaultImage")
+        noImageLabel.isHidden = note.images.first?.image != nil
       }
 
 
@@ -231,41 +233,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
       }
 
 
-    // MARK: - UIImagePickerControllerDelegate
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
-      {
-        // Get the original version of the selected image
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-
-        // If there is an existing image associated with the note, delete it from the managed object context
-        if let currentImage = note.image {
-          managedObjectContext.delete(currentImage)
-        }
-
-        // Create a new image object from the selected image, and associate it with the note
-        let newImage = Image(imageData: nil, context: managedObjectContext)
-        newImage.image = selectedImage
-        note.image = newImage
-
-        // Update the image view's image
-        imageView.image = selectedImage
-
-        // Hide the no image label
-        noImageLabel.isHidden = true
-
-        // Dismiss the picker
-        dismiss(animated: true, completion: nil)
-      }
-
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-      {
-        // Dismiss the picker
-        dismiss(animated: true, completion: nil)
-      }
-
-
     // MARK: - Actions
 
     func done(_ sender: AnyObject?)
@@ -304,42 +271,14 @@ class NoteViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         // Ensure the active subview resigns as first responder
         activeSubview?.resignFirstResponder()
 
-        // Configure a number of alert actions
-        var actions = [UIAlertAction]()
-
-        // Always configure a cancel action
-        actions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        // Configure a camera button if a camera is available
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-          actions.append(UIAlertAction(title: "Camera", style: .default, handler:
-              { (action: UIAlertAction) in
-                // Present a UIImagePickerController for the photo library
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.sourceType = .camera
-                imagePickerController.delegate = self
-                self.present(imagePickerController, animated: true, completion: nil)
-              }))
-        }
-
-        // Configure a photo library button if a photo library is available
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-          actions.append(UIAlertAction(title: "Photo Library", style: .default, handler:
-            { (action: UIAlertAction) in
-              // Present a UIImagePickerController for the camera
-              let imagePickerController = UIImagePickerController()
-              imagePickerController.sourceType = .photoLibrary
-              imagePickerController.delegate = self
-              self.present(imagePickerController, animated: true, completion: nil)
-            }))
-        }
-
-        // Configure and present an alert controller
-        let alertController = UIAlertController(title: "Image Selection", message: "Choose the image source you'd like to use", preferredStyle: .alert)
-        for action in actions {
-          alertController.addAction(action)
-        }
-        present(alertController, animated: true, completion: nil)
+        // Configure and show an ImageCollectionViewController
+        let imageCollectionViewController = ImageCollectionViewController(note: note, context: managedObjectContext, completion:
+            { (image: Image?) in
+              // Update the image view's image
+              self.imageView.image = image?.image ?? UIImage(named: "defaultImage")
+              self.noImageLabel.isHidden = image != nil
+            })
+        show(imageCollectionViewController, sender: self)
       }
 
   }

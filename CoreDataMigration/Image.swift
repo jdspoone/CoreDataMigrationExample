@@ -12,6 +12,7 @@ import CoreData
 class Image: NSManagedObject
   {
 
+    @NSManaged var index: Int16
     @NSManaged var imageData: Data?
 
     var image: UIImage?
@@ -21,12 +22,13 @@ class Image: NSManagedObject
       }
 
 
-    convenience init(imageData: Data?, context: NSManagedObjectContext)
+    convenience init(index: Int16, imageData: Data?, context: NSManagedObjectContext)
       {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Image", in: context)!
 
         self.init(entity: entityDescription, insertInto: context)
 
+        self.index = index
         self.imageData = imageData
       }
 
